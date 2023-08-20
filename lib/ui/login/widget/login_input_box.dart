@@ -18,6 +18,8 @@ class LoginInputBox extends StatefulWidget {
   /* 文本输入类型 */
   final TextInputType textInputType;
 
+  final VoidCallback clearContentGestureTapCallback;
+
   const LoginInputBox(
     this.title,
     this.hint, {
@@ -27,6 +29,7 @@ class LoginInputBox extends StatefulWidget {
     this.lineStretch = false,
     required this.enableInputPasswordType,
     required this.textInputType,
+    required this.clearContentGestureTapCallback,
   });
 
   @override
@@ -36,6 +39,8 @@ class LoginInputBox extends StatefulWidget {
 class _LoginInputBoxState extends State<LoginInputBox> {
   /* 获取光标的事件 */
   final _focusNode = FocusNode();
+
+  final _textEditingController = TextEditingController();
 
   @override
   void initState() {
@@ -52,6 +57,7 @@ class _LoginInputBoxState extends State<LoginInputBox> {
   @override
   void dispose() {
     _focusNode.dispose();
+    _textEditingController.dispose();
     super.dispose();
   }
 
@@ -69,7 +75,21 @@ class _LoginInputBoxState extends State<LoginInputBox> {
                 style: const TextStyle(fontSize: 16),
               ),
             ),
-            _generateInputBox()
+            _generateInputBox(),
+            Padding(
+              padding: EdgeInsets.only(right: 15),
+              child: InkWell(
+                onTap: () {
+                  _textEditingController.clear();
+                },
+                child: SizedBox(
+                    child: Icon(
+                  Icons.clear_outlined,
+                  color: materialColor,
+                  size: 18.0,
+                )),
+              ),
+            ),
           ],
         ),
         Padding(
@@ -87,6 +107,7 @@ class _LoginInputBoxState extends State<LoginInputBox> {
   Expanded _generateInputBox() {
     return Expanded(
         child: TextField(
+      controller: _textEditingController,
       focusNode: _focusNode,
       onChanged: widget.onContentValueChanged,
       obscureText: widget.enableInputPasswordType,

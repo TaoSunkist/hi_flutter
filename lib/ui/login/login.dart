@@ -57,6 +57,9 @@ class _LoginPageState extends State<LoginPage> {
             },
             enableInputPasswordType: false,
             textInputType: TextInputType.text,
+            clearContentGestureTapCallback: () {
+              print("clear content");
+            },
           ),
           LoginInputBox(
             "密码",
@@ -70,6 +73,9 @@ class _LoginPageState extends State<LoginPage> {
             },
             enableInputPasswordType: true,
             textInputType: TextInputType.text,
+            clearContentGestureTapCallback: () {
+              print("clear content");
+            },
           ),
           LoginInputBox(
             "确认密码",
@@ -82,6 +88,7 @@ class _LoginPageState extends State<LoginPage> {
             },
             enableInputPasswordType: true,
             textInputType: TextInputType.text,
+            clearContentGestureTapCallback: () {},
           ),
         ]),
       ),
