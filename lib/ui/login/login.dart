@@ -1,4 +1,8 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:hi_flutter/ui/login/widget/login_input_box.dart';
 
 import '../reusable/gradient_app_bar.dart';
 
@@ -20,24 +24,67 @@ class _LoginPageState extends State<LoginPage> {
       appBar: GradientAppBar(
         title: "注册",
       ),
-      body: Column(children: [
-        Row(
-          children: [
-            Container(
-              padding: EdgeInsets.only(left: 15),
-              child: Text(
-                'Welcome to register',
-                style: TextStyle(
-                    fontStyle: FontStyle.italic,
-                    decoration: TextDecoration.none,
-                    color: Theme.of(context).primaryColor,
-                    fontSize: 18),
-                maxLines: 1,
+      /** 使用ListView可以方便小屏幕的滚动, 自适应键盘防止遮挡
+       * 另外如果item较为复杂可以考虑使用 ListView.builder/ ListView.separated */
+      body: Container(
+        child: ListView(children: [
+          Row(
+            children: [
+              Container(
+                width: MediaQuery.of(context).size.width,
+                alignment: Alignment.center,
+                child: Text(
+                  'Welcome to register',
+                  style: TextStyle(
+                      fontStyle: FontStyle.italic,
+                      decoration: TextDecoration.none,
+                      color: Theme.of(context).primaryColor,
+                      fontWeight: FontWeight.w900,
+                      fontSize: 18),
+                  maxLines: 1,
+                ),
               ),
-            ),
-          ],
-        ),
-      ]),
+            ],
+          ),
+          LoginInputBox(
+            "账号",
+            "请输入账号",
+            onContentValueChanged: (String value) {
+              print(value);
+            },
+            onFocusValueChanged: (bool value) {
+              print("密码 focused");
+            },
+            enableInputPasswordType: false,
+            textInputType: TextInputType.text,
+          ),
+          LoginInputBox(
+            "密码",
+            "请输入密码",
+            lineStretch: false,
+            onContentValueChanged: (String value) {
+              print(value);
+            },
+            onFocusValueChanged: (bool value) {
+              print("密码 focused");
+            },
+            enableInputPasswordType: true,
+            textInputType: TextInputType.text,
+          ),
+          LoginInputBox(
+            "确认密码",
+            "请输入密码",
+            onContentValueChanged: (String value) {
+              print(value);
+            },
+            onFocusValueChanged: (bool value) {
+              print("密码 focused");
+            },
+            enableInputPasswordType: true,
+            textInputType: TextInputType.text,
+          ),
+        ]),
+      ),
     );
   }
 }

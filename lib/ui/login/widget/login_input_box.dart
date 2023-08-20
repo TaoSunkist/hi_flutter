@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hi_flutter/util/color.dart';
 
-class LoginInput extends StatefulWidget {
+class LoginInputBox extends StatefulWidget {
   final String title;
 
   final String hint;
@@ -18,18 +18,22 @@ class LoginInput extends StatefulWidget {
   /* 文本输入类型 */
   final TextInputType textInputType;
 
-  const LoginInput(this.title, this.hint, this.onContentValueChanged,
-      {super.key,
-      required this.onFocusValueChanged,
-      this.lineStretch = false,
-      this.enableInputPasswordType = false,
-      required this.textInputType});
+  const LoginInputBox(
+    this.title,
+    this.hint, {
+    super.key,
+    required this.onContentValueChanged,
+    required this.onFocusValueChanged,
+    this.lineStretch = false,
+    required this.enableInputPasswordType,
+    required this.textInputType,
+  });
 
   @override
-  State<LoginInput> createState() => _LoginInputState();
+  State<LoginInputBox> createState() => _LoginInputBoxState();
 }
 
-class _LoginInputState extends State<LoginInput> {
+class _LoginInputBoxState extends State<LoginInputBox> {
   /* 获取光标的事件 */
   final _focusNode = FocusNode();
 
@@ -59,20 +63,28 @@ class _LoginInputState extends State<LoginInput> {
           children: [
             Container(
               padding: const EdgeInsets.only(left: 15),
-              width: 15,
+              width: 100,
               child: Text(
                 widget.title,
                 style: const TextStyle(fontSize: 16),
               ),
             ),
-            generateInputBox()
+            _generateInputBox()
           ],
         ),
+        Padding(
+          padding: EdgeInsets.only(left: !widget.lineStretch ? 15 : 0, right: !widget.lineStretch ? 15 : 0),
+          child: Divider(
+            height: 1,
+            thickness: 0.5,
+            color: materialColor,
+          ),
+        )
       ],
     );
   }
 
-  Expanded generateInputBox() {
+  Expanded _generateInputBox() {
     return Expanded(
         child: TextField(
       focusNode: _focusNode,
@@ -81,12 +93,16 @@ class _LoginInputState extends State<LoginInput> {
       keyboardType: widget.textInputType,
       autofocus: !widget.enableInputPasswordType,
       cursorColor: materialColor,
-      style: TextStyle(fontSize: 16, color: Colors.black, fontWeight: FontWeight.w300),
+      style: const TextStyle(
+        fontSize: 16,
+        color: Colors.black,
+        fontWeight: FontWeight.w300,
+      ),
       decoration: InputDecoration(
-          contentPadding: EdgeInsets.only(left: 20, right: 20),
+          contentPadding: const EdgeInsets.only(left: 20, right: 20),
           border: InputBorder.none,
           hintText: widget.hint ?? 'N/A',
-          hintStyle: TextStyle(fontSize: 15, color: Colors.grey)),
+          hintStyle: const TextStyle(fontSize: 15, color: Colors.grey)),
     ));
   }
 }
