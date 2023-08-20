@@ -16,15 +16,21 @@ const MaterialColor materialColors = MaterialColor(0xFFB388FF, {
 class GradientAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
 
-  const GradientAppBar({super.key, required this.title});
+  final String leftTitle;
+
+  final String rightTitle;
+
+  const GradientAppBar({super.key, required this.title, this.leftTitle = "", this.rightTitle = ""});
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      centerTitle: false,
       title: Text(
         title,
         style: TextStyle(color: materialColors.shade50),
       ),
+      iconTheme: Theme.of(context).iconTheme,
       flexibleSpace: Container(
         decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -32,6 +38,7 @@ class GradientAppBar extends StatelessWidget implements PreferredSizeWidget {
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight)),
       ),
+      actions: [],
     );
   }
 
