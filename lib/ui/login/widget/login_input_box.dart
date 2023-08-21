@@ -47,10 +47,7 @@ class _LoginInputBoxState extends State<LoginInputBox> {
     super.initState();
 
     _focusNode.addListener(() {
-      print("Has focus: ${_focusNode.hasFocus}");
-      if (widget.onFocusValueChanged != null) {
-        widget.onFocusValueChanged(_focusNode.hasFocus);
-      }
+      widget.onFocusValueChanged(_focusNode.hasFocus);
     });
   }
 
@@ -109,7 +106,9 @@ class _LoginInputBoxState extends State<LoginInputBox> {
         child: TextField(
       controller: _textEditingController,
       focusNode: _focusNode,
-      onChanged: widget.onContentValueChanged,
+      onChanged: (String content) {
+        widget.onContentValueChanged.call;
+      },
       obscureText: widget.enableInputPasswordType,
       keyboardType: widget.textInputType,
       autofocus: !widget.enableInputPasswordType,

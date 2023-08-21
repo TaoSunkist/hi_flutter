@@ -1,9 +1,9 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:hi_flutter/ui/login/widget/login_input_box.dart';
 
+import '../../util/color.dart';
 import '../reusable/gradient_app_bar.dart';
 
 class LoginPage extends StatefulWidget {
@@ -23,6 +23,9 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       appBar: GradientAppBar(
         title: "注册",
+        onBackPressCallback: () {
+          print(" onBackPressCallback");
+        },
       ),
       /** 使用ListView可以方便小屏幕的滚动, 自适应键盘防止遮挡
        * 另外如果item较为复杂可以考虑使用 ListView.builder/ ListView.separated */
@@ -90,6 +93,17 @@ class _LoginPageState extends State<LoginPage> {
             textInputType: TextInputType.text,
             clearContentGestureTapCallback: () {},
           ),
+          Padding(
+            padding: EdgeInsets.only(left: 20, right: 20,top: 10),
+            child: MaterialButton(
+              textColor: materialColors.shade50,
+              color: materialColor,
+              onPressed: () {
+              },
+              child: Text("立即注册"),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
+            ),
+          )
         ]),
       ),
     );
