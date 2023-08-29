@@ -24,9 +24,9 @@ class LoginInputBox extends StatefulWidget {
     this.title,
     this.hint, {
     super.key,
+    this.lineStretch = false,
     required this.onContentValueChanged,
     required this.onFocusValueChanged,
-    this.lineStretch = false,
     required this.enableInputPasswordType,
     required this.textInputType,
     required this.clearContentGestureTapCallback,
@@ -74,7 +74,7 @@ class _LoginInputBoxState extends State<LoginInputBox> {
             ),
             _generateInputBox(),
             Padding(
-              padding: EdgeInsets.only(right: 15),
+              padding: const EdgeInsets.only(right: 15),
               child: InkWell(
                 onTap: () {
                   _textEditingController.clear();

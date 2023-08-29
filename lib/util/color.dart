@@ -13,5 +13,4 @@ const MaterialColor materialColors = MaterialColor(0xFFB388FF, {
   900: Color(0xFF4B20C9),
 });
 
-MaterialColor materialColor =
-    MaterialColor(materialColors.shade900.value, const <int, Color>{50: const Color(0xff123233)});
+MaterialColor materialColor = MaterialColor(materialColors.shade900.value, const <int, Color>{50: Color(0xFF4B20C9)});

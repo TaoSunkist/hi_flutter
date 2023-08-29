@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hi_flutter/ui/home/home.dart';
 import 'package:hi_flutter/ui/login/login.dart';
+import 'package:hi_flutter/ui/register/register.dart';
 import 'package:hi_flutter/util/color.dart';
 
 void main() {
@@ -35,8 +36,8 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
           appBarTheme: AppBarTheme(backgroundColor: materialColor)),
       // home: const HomePage(title: 'Flutter Demo Home Page'),
-      home: const LoginPage(),
+      // home: const LoginPage(),
+      home: const RegisterPage(),
     );
   }
 }
-

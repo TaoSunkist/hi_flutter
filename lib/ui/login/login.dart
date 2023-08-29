@@ -1,10 +1,10 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
-import 'package:hi_flutter/ui/login/widget/login_input_box.dart';
 
 import '../../util/color.dart';
 import '../reusable/gradient_app_bar.dart';
+import '../reusable/widget/login_input_box.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -37,7 +37,7 @@ class _LoginPageState extends State<LoginPage> {
                 width: MediaQuery.of(context).size.width,
                 alignment: Alignment.center,
                 child: Text(
-                  'Welcome to register',
+                  'Welcome to login',
                   style: TextStyle(
                       fontStyle: FontStyle.italic,
                       decoration: TextDecoration.none,
@@ -79,19 +79,6 @@ class _LoginPageState extends State<LoginPage> {
             clearContentGestureTapCallback: () {
               print("clear content");
             },
-          ),
-          LoginInputBox(
-            "确认密码",
-            "请输入密码",
-            onContentValueChanged: (String value) {
-              print(value);
-            },
-            onFocusValueChanged: (bool value) {
-              print("密码 focused");
-            },
-            enableInputPasswordType: true,
-            textInputType: TextInputType.text,
-            clearContentGestureTapCallback: () {},
           ),
           Padding(
             padding: EdgeInsets.only(left: 20, right: 20,top: 10),
