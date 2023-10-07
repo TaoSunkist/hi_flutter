@@ -1,7 +1,9 @@
-
 import 'package:hi_flutter/net/http/base_request.dart';
 
-class GetRequest extends BaseRequest{
+class GetRequest extends BaseRequest {
+  GetRequest(){
+    useHttps=false;
+  }
 
   @override
   Method method() {
@@ -10,13 +12,11 @@ class GetRequest extends BaseRequest{
 
   @override
   String path() {
-    return "/api/v1/test";
+    return "/api/v1/test/get";
   }
 
   @override
   bool needLogin() {
-    // TODO: implement needLogin
-    throw UnimplementedError();
+    return false;
   }
-
 }

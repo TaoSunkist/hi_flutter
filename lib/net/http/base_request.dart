@@ -4,21 +4,9 @@ enum Method { GET, POST }
 
 /// curl "http://127.0.0.1:8080/api/v1/test/get"
 abstract class BaseRequest {
-  factory BaseRequest(Method method) {
-    if (Method.GET == method) {
-      /* NOTHING */
-    } else if (Method.POST == method) {
-      /* NOTHING */
-    } else {
-      throw Exception("unkonwn method type");
-      /* NOTHING */
-    }
-    return GetRequest();
-  }
-
   static const TAG = "BaseRequest";
 
-  var hostUrl = "http://127.0.0.1:8080";
+  var hostUrl = "120.79.80.230:8080";
 
   var useHttps = true;
 
@@ -33,16 +21,13 @@ abstract class BaseRequest {
   String path();
 
   String url() {
-    var pathStr = path();
 
-    if (pathStr.isNotEmpty) {
-    } else {}
-    Uri uri = Uri(scheme: "", host: host(), port: 8080, path: pathStr);
-
+    Uri uri;
+    print("useHttps: ${useHttps}, ${host()},${path()}");
     if (useHttps) {
-      uri = Uri.https(hostUrl, path(), pathParams);
+      uri = Uri.https(host(), path(), params);
     } else {
-      uri = Uri.http(hostUrl, path(), pathParams);
+      uri = Uri.http(host(), path(), params);
     }
     print("$TAG ${uri.toString()}");
 
