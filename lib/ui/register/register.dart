@@ -21,13 +21,15 @@ class _RegisterPageState extends State<RegisterPage> {
           children: [
             Row(
               children: [
-                LoginInputBox("账号", "请输入账号",
-                    onContentValueChanged: (String content) {},
-                    onFocusValueChanged: (bool isFocus) {},
-                    enableInputPasswordType: false,
-                    textInputType: TextInputType.text, clearContentGestureTapCallback: () {
+                Container(
+                    width: MediaQuery.of(context).size.width,
+                    child: LoginInputBox("账号", "请输入账号",
+                        onContentValueChanged: (String content) {},
+                        onFocusValueChanged: (bool isFocus) {},
+                        enableInputPasswordType: false,
+                        textInputType: TextInputType.text, clearContentGestureTapCallback: () {
                   /* 绑定输入框得点击按钮回调清空输入框 */
-                })
+                }))
               ],
             )
           ],

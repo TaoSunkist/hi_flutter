@@ -101,8 +101,8 @@ class _LoginInputBoxState extends State<LoginInputBox> {
     );
   }
 
-  Expanded _generateInputBox() {
-    return Expanded(
+  Flexible _generateInputBox() {
+    return Flexible(
         child: TextField(
       controller: _textEditingController,
       focusNode: _focusNode,
