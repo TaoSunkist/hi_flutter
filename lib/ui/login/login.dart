@@ -1,6 +1,8 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
+import 'package:hi_flutter/net/core/hi_net.dart';
+import 'package:hi_flutter/net/http/get_request.dart';
 
 import '../../util/color.dart';
 import '../reusable/gradient_app_bar.dart';
@@ -22,7 +24,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: GradientAppBar(
-        title: "注册",
+        title: "登录",
         onBackPressCallback: () {
           print(" onBackPressCallback");
         },
@@ -30,68 +32,83 @@ class _LoginPageState extends State<LoginPage> {
       /** 使用ListView可以方便小屏幕的滚动, 自适应键盘防止遮挡
        * 另外如果item较为复杂可以考虑使用 ListView.builder/ ListView.separated */
       body: Container(
-        child: ListView(children: [
-          Row(
-            children: [
-              Container(
-                width: MediaQuery.of(context).size.width,
-                alignment: Alignment.center,
-                child: Text(
-                  'Welcome to login',
-                  style: TextStyle(
-                      fontStyle: FontStyle.italic,
-                      decoration: TextDecoration.none,
-                      color: Theme.of(context).primaryColor,
-                      fontWeight: FontWeight.w900,
-                      fontSize: 18),
-                  maxLines: 1,
+        child: ListView(
+          children: [
+            Row(
+              children: [
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  alignment: Alignment.center,
+                  child: Text(
+                    'Welcome to login',
+                    style: TextStyle(
+                        fontStyle: FontStyle.italic,
+                        decoration: TextDecoration.none,
+                        color: Theme.of(context).primaryColor,
+                        fontWeight: FontWeight.w900,
+                        fontSize: 18),
+                    maxLines: 1,
+                  ),
                 ),
-              ),
-            ],
-          ),
-          LoginInputBox(
-            "账号",
-            "请输入账号",
-            onContentValueChanged: (String value) {
-              print(value);
-            },
-            onFocusValueChanged: (bool value) {
-              print("密码 focused");
-            },
-            enableInputPasswordType: false,
-            textInputType: TextInputType.text,
-            clearContentGestureTapCallback: () {
-              print("clear content");
-            },
-          ),
-          LoginInputBox(
-            "密码",
-            "请输入密码",
-            lineStretch: false,
-            onContentValueChanged: (String value) {
-              print(value);
-            },
-            onFocusValueChanged: (bool value) {
-              print("密码 focused");
-            },
-            enableInputPasswordType: true,
-            textInputType: TextInputType.text,
-            clearContentGestureTapCallback: () {
-              print("clear content");
-            },
-          ),
-          Padding(
-            padding: EdgeInsets.only(left: 20, right: 20,top: 10),
-            child: MaterialButton(
-              textColor: materialColors.shade50,
-              color: materialColor,
-              onPressed: () {
-              },
-              child: Text("立即注册"),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
+              ],
             ),
-          )
-        ]),
+            LoginInputBox(
+              "账号",
+              "请输入账号",
+              onContentValueChanged: (String value) {
+                print(value);
+              },
+              onFocusValueChanged: (bool value) {
+                print("密码 focused");
+              },
+              enableInputPasswordType: false,
+              textInputType: TextInputType.text,
+              clearContentGestureTapCallback: () {
+                print("clear content");
+              },
+            ),
+            LoginInputBox(
+              "密码",
+              "请输入密码",
+              lineStretch: false,
+              onContentValueChanged: (String value) {
+                print(value);
+              },
+              onFocusValueChanged: (bool value) {
+                print("密码 focused");
+              },
+              enableInputPasswordType: true,
+              textInputType: TextInputType.text,
+              clearContentGestureTapCallback: () {
+                print("clear content");
+              },
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
+              child: MaterialButton(
+                textColor: materialColors.shade50,
+                color: materialColor,
+                onPressed: () {},
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
+                child: const Text("立即登录"),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
+              child: TextButton(
+                  onPressed: () {
+                    /* 前往注册页面 */
+                    print("前往注册页面");
+                    var getRequest = GetRequest();
+                    print("${HiNet.getInstance().fire(getRequest)}");
+                  },
+                  child: Text(
+                    "立即注册",
+                    style: TextStyle(color: materialColors.shade300),
+                  )),
+            )
+          ],
+        ),
       ),
     );
   }

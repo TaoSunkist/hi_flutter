@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
           appBarTheme: AppBarTheme(backgroundColor: materialColor)),
       // home: const HomePage(title: 'Flutter Demo Home Page'),
       // home: const LoginPage(),
-      home: const RegisterPage(),
+      home: const LoginPage(),
     );
   }
 }

@@ -1,8 +1,8 @@
 import 'package:hi_flutter/net/http/base_request.dart';
 
 class GetRequest extends BaseRequest {
-  GetRequest(){
-    useHttps=false;
+  GetRequest() {
+    useHttps = false;
   }
 
   @override
